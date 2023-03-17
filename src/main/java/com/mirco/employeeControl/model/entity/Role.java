@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = com.pos.pos.model.SchemaDB.CONTROLL, name = "role")
+@Table(schema = com.pos.pos.model.SchemaDB.CONTROLL, name = "rol")
 @Getter
 @Setter
 public class Role {

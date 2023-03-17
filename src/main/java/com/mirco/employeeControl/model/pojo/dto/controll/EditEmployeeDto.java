@@ -8,7 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class EditEmployeeDto {
-    private int identityCard;
+    private String identityCard;
     private String email;
     private String name;
     private String lastName;

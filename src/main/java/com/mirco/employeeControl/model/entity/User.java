@@ -1,5 +1,6 @@
 package com.mirco.employeeControl.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pos.pos.model.SchemaDB;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class User {
     private int idRol;
 
     @Column(name = "identity_card")
-    private int identityCard;
+    private String identityCard;
 
     private String email;
 

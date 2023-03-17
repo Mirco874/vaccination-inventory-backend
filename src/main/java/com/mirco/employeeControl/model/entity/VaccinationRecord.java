@@ -1,5 +1,6 @@
 package com.mirco.employeeControl.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pos.pos.model.SchemaDB;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ public class VaccinationRecord {
 
     @Column(name = "vaccination_date")
     @Temporal(TemporalType.DATE)
-    private Date vacccinationDate;
+    private Date vaccinationDate;
 
     private int doses;
 
