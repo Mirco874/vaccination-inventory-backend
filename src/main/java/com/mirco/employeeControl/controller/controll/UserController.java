@@ -136,7 +136,7 @@ public class UserController {
                 .builder()
                 .status(false)
                 .message(HttpResponseMessage.NOT_FOUND_RECORD.getValue())
-                .build(), HttpStatus.OK);
+                .build(), HttpStatus.BAD_REQUEST);
     }
 
 
