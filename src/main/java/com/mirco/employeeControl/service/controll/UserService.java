@@ -16,6 +16,7 @@ import java.util.Optional;
 public interface UserService {
     List<EmployeeVo> findAllUsers();
     Optional<User> findById(int id);
+    Optional<User> findByEmail(String email);
     Optional<EmployeeVo> findEmployeeVoById(int id);
     Optional<CreatedEmployedVo> persistEmployee (CreateEmployeeDto dto);
     void editEmployeeIdentifyingInformation(int id, EditEmployeeDto dto);

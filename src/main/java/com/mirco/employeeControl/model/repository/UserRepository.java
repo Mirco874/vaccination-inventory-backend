@@ -22,14 +22,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "\tv.name, \n" +
             "\tr.vaccination_date, \n" +
             "\tr.doses\n" +
-            "FROM controll.\"user\" u\n" +
-            "INNER JOIN controll.rol rl\n" +
+            "FROM control.\"user\" u\n" +
+            "INNER JOIN control.rol rl\n" +
             "ON u.id_rol = rl.id and rl.id=1\n" +
             "\n" +
-            "LEFT JOIN controll.vaccination_record r \n" +
+            "LEFT JOIN control.vaccination_record r \n" +
             "ON u.id = r.id_user \n" +
             "\n" +
-            "LEFT JOIN controll.vaccine v\n" +
+            "LEFT JOIN control.vaccine v\n" +
             "ON v.id = r.id_vaccine ", nativeQuery = true)
     List findAllEmployees();
 
@@ -45,15 +45,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "\tv.name, \n" +
             "\tr.vaccination_date, \n" +
             "\tr.doses\n" +
-            "FROM controll.\"user\" u\n" +
-            "INNER JOIN controll.rol rl\n" +
+            "FROM control.\"user\" u\n" +
+            "INNER JOIN control.rol rl\n" +
             "ON u.id_rol = rl.id and u.id_rol=1 and u.id=:id\n" +
             "\n" +
-            "LEFT JOIN controll.vaccination_record r \n" +
+            "LEFT JOIN control.vaccination_record r \n" +
             "ON u.id = r.id_user \n" +
             "\n" +
-            "LEFT JOIN controll.vaccine v\n" +
+            "LEFT JOIN control.vaccine v\n" +
             "ON v.id = r.id_vaccine ", nativeQuery = true)
     Optional<Object[]> findEmployeeById( @Param("id") int id);
-
+    Optional<User> findByEmail(String email);
 }

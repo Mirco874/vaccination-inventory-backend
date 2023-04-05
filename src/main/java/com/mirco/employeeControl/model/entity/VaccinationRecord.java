@@ -1,15 +1,15 @@
 package com.mirco.employeeControl.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.pos.pos.model.SchemaDB;
+import com.mirco.employeeControl.model.SchemaDB;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = SchemaDB.CONTROLL, name = "vaccination_record")
+@Table(schema = SchemaDB.CONTROL, name = "vaccination_record")
 @Getter
 @Setter
 public class VaccinationRecord {
@@ -42,5 +42,17 @@ public class VaccinationRecord {
     @Column(name = "updated_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDate;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
+        this.createdDate = new Date();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedBy = SecurityContextHolder.getContext().getAuthentication().getName();
+        this.updatedDate = new Date();
+    }
 
 }

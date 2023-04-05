@@ -18,7 +18,7 @@ public class Swagger3Config {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.trainning.testgradle.testgradle.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.mirco.employeeControl.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiEndpointsInfo());
@@ -26,8 +26,8 @@ public class Swagger3Config {
 
     private ApiInfo apiEndpointsInfo() {
         return new ApiInfoBuilder()
-                .title("Spring boot-POS")
-                .description("Documentacion swagger del backend de POS")
+                .title("Spring boot")
+                .description("backend swagger documentation for employee tracking app")
                 .contact(new Contact("Mirco Estefano Pilco Peralta", "https://www.google.com", "mirco.p.p@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")

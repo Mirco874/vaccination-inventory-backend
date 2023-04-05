@@ -8,6 +8,7 @@ import com.mirco.employeeControl.model.pojo.vo.controll.EmployeeVo;
 import com.mirco.employeeControl.model.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -18,11 +19,13 @@ import static com.mirco.employeeControl.commons.utils.GenerateRandomPassword.gen
 public class UserServiceImplementation implements UserService {
 
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
     private final VaccinationRecordService vaccinationRecordService;
 
     @Autowired
-    public UserServiceImplementation(UserRepository repository, VaccinationRecordService vaccinationRecordService) {
+    public UserServiceImplementation(UserRepository repository, PasswordEncoder passwordEncoder, VaccinationRecordService vaccinationRecordService) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
         this.vaccinationRecordService = vaccinationRecordService;
     }
 
@@ -46,6 +49,11 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public Optional<User> findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
     public Optional<EmployeeVo> findEmployeeVoById(int id) {
         Optional<Object[]> employeeOptionalObject = repository.findEmployeeById(id);
 
@@ -62,15 +70,16 @@ public class UserServiceImplementation implements UserService {
     public Optional<CreatedEmployedVo> persistEmployee(CreateEmployeeDto dto) {
         User employee = new User();
         BeanUtils.copyProperties( dto, employee );
-        String randomPassword = generateRandomPassword(15);
-
-        employee.setPassword(randomPassword);
+        String randomPassword = generateRandomPassword(10);
+        employee.setPassword(passwordEncoder.encode(randomPassword));
         employee.setIdRol(1);
 
         User savedEmployee = repository.save(employee);
 
         CreatedEmployedVo createdEmployedVo = new CreatedEmployedVo();
-        BeanUtils.copyProperties( savedEmployee, createdEmployedVo );
+
+        createdEmployedVo.setEmail(savedEmployee.getEmail());
+        createdEmployedVo.setPassword(randomPassword);
 
         return Optional.of(createdEmployedVo);
     }

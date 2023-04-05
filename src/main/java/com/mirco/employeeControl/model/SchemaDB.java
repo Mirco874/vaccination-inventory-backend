@@ -1,6 +1,6 @@
-package com.pos.pos.model;
+package com.mirco.employeeControl.model;
 
 public class SchemaDB {
-    public static final String CONTROLL="controll";
+    public static final String CONTROL="control";
 
 }
