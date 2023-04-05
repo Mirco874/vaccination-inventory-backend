@@ -101,7 +101,7 @@ public class UserServiceImplementation implements UserService {
 
         if(optionalEmployee.isPresent()){
 
-            updateEmployeRecord(dto, optionalEmployee.get());
+            updateEmployeeRecord(dto, optionalEmployee.get());
 
             if(optionalVaccinationRecord.isEmpty() && dto.isVaccinated()){
                 createVaccRecord(id, dto);
@@ -118,8 +118,17 @@ public class UserServiceImplementation implements UserService {
         repository.delete(user);
     }
 
+    @Override
+    public Boolean existsUserByEmail(String email) {
+        return repository.existsByEmail(email);
+    }
 
-    public void updateEmployeRecord (UpdateEmployeeInfoDto dto, User employee ){
+    @Override
+    public Boolean existsUserByIdentityCard(String identityCard) {
+        return repository.existsByIdentityCard(identityCard);
+    }
+
+    public void updateEmployeeRecord (UpdateEmployeeInfoDto dto, User employee ){
         BeanUtils.copyProperties( dto, employee );
         repository.save(employee);
     }

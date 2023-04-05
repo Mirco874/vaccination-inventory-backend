@@ -1,4 +1,4 @@
-package com.pos.pos.commons;
+package com.mirco.employeeControl.commons;
 
 import lombok.Builder;
 import lombok.Getter;

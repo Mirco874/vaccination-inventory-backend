@@ -56,4 +56,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "ON v.id = r.id_vaccine ", nativeQuery = true)
     Optional<Object[]> findEmployeeById( @Param("id") int id);
     Optional<User> findByEmail(String email);
+    Boolean existsByEmail(String email);
+    Boolean existsByIdentityCard(String identityCard);
 }

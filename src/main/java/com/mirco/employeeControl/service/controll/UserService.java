@@ -22,4 +22,6 @@ public interface UserService {
     void editEmployeeIdentifyingInformation(int id, EditEmployeeDto dto);
     void updateEmployeeAdditionalInformation (int id, UpdateEmployeeInfoDto dto);
     void removeUser(User user);
+    Boolean existsUserByEmail(String email);
+    Boolean existsUserByIdentityCard(String identityCard);
 }
