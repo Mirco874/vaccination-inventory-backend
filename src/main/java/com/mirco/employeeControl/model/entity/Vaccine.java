@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(schema = SchemaDB.CONTROL, name = "vaccine")
 @Getter
