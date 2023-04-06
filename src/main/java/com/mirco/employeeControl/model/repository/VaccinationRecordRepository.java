@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface VaccinationRecordRepository extends JpaRepository<VaccinationRecord, Integer> {
 
-    @Query(value = "SELECT * FROM controll.vaccination_record v WHERE v.id_user=:id  ", nativeQuery = true)
+    @Query(value = "SELECT * FROM control.vaccination_record v WHERE v.id_user=:id  ", nativeQuery = true)
     Optional<VaccinationRecord> findByIdUser(@Param("id") int id);
 }

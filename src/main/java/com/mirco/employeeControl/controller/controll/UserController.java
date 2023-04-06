@@ -89,20 +89,6 @@ public class UserController {
 
     @PutMapping("/{id}/update-identifying-information")
     public ResponseEntity<?> updateIdentifyingInformation(@PathVariable("id") int id, @RequestBody EditEmployeeDto dto) {
-        if(service.existsUserByEmail(dto.getEmail())){
-            return new ResponseEntity<>(ResultResponse.builder()
-                    .status(false)
-                    .message(HttpResponseMessage.DUPLICATE_EMAIL.getValue())
-                    .build(), HttpStatus.BAD_REQUEST);
-        }
-
-        if(service.existsUserByIdentityCard(dto.getIdentityCard())){
-            return new ResponseEntity<>(ResultResponse.builder()
-                    .status(false)
-                    .message(HttpResponseMessage.DUPLICATE_IDENTITY_CARD.getValue())
-                    .build(), HttpStatus.BAD_REQUEST);
-        }
-
         service.editEmployeeIdentifyingInformation(id, dto);
 
         return new ResponseEntity<>(ResultResponse.builder()
