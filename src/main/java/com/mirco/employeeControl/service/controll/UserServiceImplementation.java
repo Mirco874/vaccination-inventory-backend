@@ -149,18 +149,19 @@ public class UserServiceImplementation implements UserService {
         EmployeeVo employeeVo = new EmployeeVo();
 
         employeeVo.setId((Integer) employeeObject[0]);
-        employeeVo.setFullName((String) employeeObject[1]);
-        employeeVo.setIdentityCard((String) employeeObject[2]);
-        employeeVo.setEmail((String) employeeObject[3]);
-        employeeVo.setBirthDate((Date) employeeObject[4]);
-        employeeVo.setAddress((String) employeeObject[5]);
-        employeeVo.setPhone((String) employeeObject[6]);
+        employeeVo.setName((String) employeeObject[1]);
+        employeeVo.setLastName((String) employeeObject[2]);
+        employeeVo.setIdentityCard((String) employeeObject[3]);
+        employeeVo.setEmail((String) employeeObject[4]);
+        employeeVo.setBirthDate((Date) employeeObject[5]);
+        employeeVo.setAddress((String) employeeObject[6]);
+        employeeVo.setPhone((String) employeeObject[7]);
 
-        employeeVo.setVaccinatedState( employeeObject[9]!=null );
+        employeeVo.setVaccinatedState( employeeObject[10]!=null );
 
-        employeeVo.setVaccineType((String) employeeObject[7]);
-        employeeVo.setVaccinationDate((Date) employeeObject[8]);
-        employeeVo.setDoses((Integer)employeeObject[9]);
+        employeeVo.setVaccineType((String) employeeObject[8]);
+        employeeVo.setVaccinationDate((Date) employeeObject[9]);
+        employeeVo.setDoses((Integer)employeeObject[10]);
 
         return employeeVo;
     }

@@ -11,7 +11,8 @@ import java.util.Date;
 @Setter
 public class EmployeeVo {
     Integer id;
-    String fullName;
+    String name;
+    String lastName;
     String identityCard;
     String email;
     Date birthDate;

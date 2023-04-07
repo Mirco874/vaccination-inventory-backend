@@ -13,7 +13,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT \t\n" +
             "\tu.id, \n" +
-            "\tCONCAT(u.name,' ',u.last_name), \n" +
+            "\tu.name, \n" +
+            "\tu.last_name, \n" +
             "\tu.identity_card, \n" +
             "\tu.email, \n" +
             "\tu.birth_date,\n" +
@@ -36,7 +37,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "SELECT \t\n" +
             "\tu.id, \n" +
-            "\tCONCAT(u.name,' ',u.last_name), \n" +
+            "\tu.name, \n" +
+            "\tu.last_name, \n" +
             "\tu.identity_card, \n" +
             "\tu.email, \n" +
             "\tu.birth_date,\n" +
