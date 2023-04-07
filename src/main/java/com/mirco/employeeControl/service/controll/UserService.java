@@ -2,10 +2,7 @@ package com.mirco.employeeControl.service.controll;
 
 
 import com.mirco.employeeControl.model.entity.User;
-import com.mirco.employeeControl.model.pojo.dto.controll.CreateEmployeeDto;
-import com.mirco.employeeControl.model.pojo.dto.controll.EditEmployeeDto;
-import com.mirco.employeeControl.model.pojo.dto.controll.FilterEmployeesDto;
-import com.mirco.employeeControl.model.pojo.dto.controll.UpdateEmployeeInfoDto;
+import com.mirco.employeeControl.model.pojo.dto.controll.*;
 import com.mirco.employeeControl.model.pojo.vo.controll.CreatedEmployedVo;
 import com.mirco.employeeControl.model.pojo.vo.controll.EmployeeVo;
 
@@ -20,8 +17,9 @@ public interface UserService {
     Optional<EmployeeVo> findEmployeeVoById(int id);
     Optional<CreatedEmployedVo> persistEmployee (CreateEmployeeDto dto);
     void editEmployeeIdentifyingInformation(int id, EditEmployeeDto dto);
-    void updateEmployeeAdditionalInformation (int id, UpdateEmployeeInfoDto dto);
+    void updateEmployeeVaccinationInformation (int id, UpdateVaccinationInfoDto dto);
     void removeUser(User user);
     Boolean existsUserByEmail(String email);
     Boolean existsUserByIdentityCard(String identityCard);
+    void updatePersonalInformation(int id, UpdatePersonalInfoDto dto);
 }

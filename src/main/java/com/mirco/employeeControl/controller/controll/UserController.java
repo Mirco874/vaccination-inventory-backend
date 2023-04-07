@@ -4,9 +4,7 @@ import com.mirco.employeeControl.commons.ResultResponse;
 import com.mirco.employeeControl.model.entity.User;
 
 import com.mirco.employeeControl.model.enums.HttpResponseMessage;
-import com.mirco.employeeControl.model.pojo.dto.controll.CreateEmployeeDto;
-import com.mirco.employeeControl.model.pojo.dto.controll.EditEmployeeDto;
-import com.mirco.employeeControl.model.pojo.dto.controll.UpdateEmployeeInfoDto;
+import com.mirco.employeeControl.model.pojo.dto.controll.*;
 import com.mirco.employeeControl.model.pojo.vo.controll.CreatedEmployedVo;
 import com.mirco.employeeControl.model.pojo.vo.controll.EmployeeVo;
 import com.mirco.employeeControl.service.controll.UserService;
@@ -87,8 +85,8 @@ public class UserController {
                 .build(), HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/{id}/update-identifying-information")
-    public ResponseEntity<?> updateIdentifyingInformation(@PathVariable("id") int id, @RequestBody EditEmployeeDto dto) {
+    @PutMapping("/{id}/update-employee-information")
+    public ResponseEntity<?> updateEmployeeInformation(@PathVariable("id") int id, @RequestBody EditEmployeeDto dto) {
         service.editEmployeeIdentifyingInformation(id, dto);
 
         return new ResponseEntity<>(ResultResponse.builder()
@@ -97,15 +95,26 @@ public class UserController {
                 .build(), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/update-additional-information")
-    public ResponseEntity<?> updateAdditionalInformation(@PathVariable("id") int id, @RequestBody UpdateEmployeeInfoDto dto) {
-        service.updateEmployeeAdditionalInformation(id, dto);
+    @PutMapping("/{id}/update-personal-information")
+    public ResponseEntity<?> updatePersonalInformation(@PathVariable("id") int id, @RequestBody UpdatePersonalInfoDto dto) {
+        service.updatePersonalInformation(id, dto);
 
         return new ResponseEntity<>(ResultResponse.builder()
                 .status(true)
                 .message(HttpResponseMessage.UPDATE_SUCCESSFUL.getValue())
                 .build(), HttpStatus.OK);
     }
+
+    @PutMapping("/{id}/update-vaccine-information")
+    public ResponseEntity<?> updateVaccineInformation(@PathVariable("id") int id, @RequestBody UpdateVaccinationInfoDto dto) {
+        service.updateEmployeeVaccinationInformation(id, dto);
+
+        return new ResponseEntity<>(ResultResponse.builder()
+                .status(true)
+                .message(HttpResponseMessage.UPDATE_SUCCESSFUL.getValue())
+                .build(), HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {

@@ -95,13 +95,26 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void updateEmployeeAdditionalInformation(int id, UpdateEmployeeInfoDto dto) {
+    public void updatePersonalInformation(int id, UpdatePersonalInfoDto dto) {
+        Optional<User> optionalEmployee = repository.findById(id);
+
+        if(!optionalEmployee.isEmpty()){
+            BeanUtils.copyProperties( dto, optionalEmployee.get() );
+            repository.save(optionalEmployee.get());
+        }
+    }
+
+
+    @Override
+    public void updateEmployeeVaccinationInformation(int id, UpdateVaccinationInfoDto dto) {
         Optional<User> optionalEmployee = repository.findById(id);
         Optional<VaccinationRecord> optionalVaccinationRecord = vaccinationRecordService.findByUserId(id);
 
         if(optionalEmployee.isPresent()){
 
-            updateEmployeeRecord(dto, optionalEmployee.get());
+            BeanUtils.copyProperties( dto, optionalEmployee.get() );
+            repository.save(optionalEmployee.get());
+
 
             if(optionalVaccinationRecord.isEmpty() && dto.isVaccinated()){
                 createVaccRecord(id, dto);
@@ -133,14 +146,14 @@ public class UserServiceImplementation implements UserService {
         repository.save(employee);
     }
 
-    public void createVaccRecord (int userId, UpdateEmployeeInfoDto dto) {
+    public void createVaccRecord (int userId, UpdateVaccinationInfoDto dto) {
         VaccinationRecordDto vaccinationRecordDto = new VaccinationRecordDto();
         vaccinationRecordDto.setIdUser(userId);
         BeanUtils.copyProperties(dto,vaccinationRecordDto);
         vaccinationRecordService.persistVaccinationRecord(vaccinationRecordDto);
     }
 
-    public void updateVacRecord ( UpdateEmployeeInfoDto dto, VaccinationRecord vaccinationRecord ) {
+    public void updateVacRecord ( UpdateVaccinationInfoDto dto, VaccinationRecord vaccinationRecord ) {
         BeanUtils.copyProperties( dto, vaccinationRecord );
         vaccinationRecordService.updateVaccinationRecord(vaccinationRecord);
     }

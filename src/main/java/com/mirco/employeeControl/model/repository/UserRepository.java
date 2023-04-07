@@ -13,14 +13,14 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT \t\n" +
             "\tu.id, \n" +
-            "\tu.name, \n" +
+            "\tu.name as userName, \n" +
             "\tu.last_name, \n" +
             "\tu.identity_card, \n" +
             "\tu.email, \n" +
             "\tu.birth_date,\n" +
             "\tu.address, \n" +
             "\tu.phone,\n" +
-            "\tv.name, \n" +
+            "\tv.name as vaccineName, \n" +
             "\tr.vaccination_date, \n" +
             "\tr.doses\n" +
             "FROM control.\"user\" u\n" +
@@ -37,14 +37,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "SELECT \t\n" +
             "\tu.id, \n" +
-            "\tu.name, \n" +
+            "\tu.name as userName, \n" +
             "\tu.last_name, \n" +
             "\tu.identity_card, \n" +
             "\tu.email, \n" +
             "\tu.birth_date,\n" +
             "\tu.address, \n" +
             "\tu.phone,\n" +
-            "\tv.name, \n" +
+            "\tv.name as vaccineName, \n" +
             "\tr.vaccination_date, \n" +
             "\tr.doses\n" +
             "FROM control.\"user\" u\n" +
